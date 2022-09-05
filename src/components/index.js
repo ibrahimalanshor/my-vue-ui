@@ -1,1 +1,1 @@
-export { default as BaseAlert } from "./base-alert.vue";
+export { default as BaseAlert } from './base-alert.vue';
