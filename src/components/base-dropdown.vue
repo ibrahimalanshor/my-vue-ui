@@ -73,7 +73,7 @@ watch(
     <slot name="toggle" :toggle="handleClickToggle" />
 
     <div
-      class="z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 block absolute top-12"
+      class="z-10 bg-white rounded divide-y divide-gray-100 shadow block absolute top-12"
       :class="dropdownClass"
       v-if="visible"
       v-click-outside="handleClickOutside"

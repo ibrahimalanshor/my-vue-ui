@@ -5,6 +5,7 @@ import {
   TestBadge,
   TestButton,
   TestDropdown,
+  TestModal,
 } from '@/test';
 </script>
 
@@ -15,5 +16,6 @@ import {
     <test-badge />
     <test-button />
     <test-dropdown />
+    <test-modal />
   </div>
 </template>
