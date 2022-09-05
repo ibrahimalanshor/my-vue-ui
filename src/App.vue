@@ -8,6 +8,7 @@ import {
   TestModal,
   TestPopup,
   TestSkeleton,
+  TestPagination,
 } from '@/test';
 </script>
 
@@ -21,5 +22,6 @@ import {
     <test-modal />
     <test-popup />
     <test-skeleton />
+    <test-pagination />
   </div>
 </template>
