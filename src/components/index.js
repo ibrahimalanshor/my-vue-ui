@@ -5,3 +5,4 @@ export { default as BaseButton } from './base-button.vue';
 export { default as BaseDropdown } from './base-dropdown.vue';
 export { default as BaseModal } from './base-modal.vue';
 export { default as BasePopup } from './base-popup.vue';
+export { default as BaseSkeleton } from './base-skeleton.vue';

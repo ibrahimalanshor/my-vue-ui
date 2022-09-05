@@ -16,7 +16,7 @@ const iconClass = computed(() => {
   return 'mx-auto mb-4 w-14 h-14 text-gray-400';
 });
 const contentClass = computed(() => {
-  return 'mb-5 text-lg font-normal text-gray-500 dark:text-gray-400';
+  return 'mb-5 text-lg font-normal text-gray-500';
 });
 
 function close() {
@@ -55,7 +55,7 @@ watch(
           <button
             v-on:click="handleClickClose"
             type="button"
-            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
             data-modal-toggle="popup-modal"
           >
             <svg
