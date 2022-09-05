@@ -3,3 +3,4 @@ export { default as BaseCollapse } from './base-collapse.vue';
 export { default as BaseBadge } from './base-badge.vue';
 export { default as BaseButton } from './base-button.vue';
 export { default as BaseDropdown } from './base-dropdown.vue';
+export { default as BaseModal } from './base-modal.vue';
