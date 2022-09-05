@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
+  circle: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const badgeClass = computed(() => {
@@ -31,13 +35,16 @@ const badgeClass = computed(() => {
 
   const bgClass = bgColors[props.color] ?? bgColors.default;
   const textClass = textColors[props.color] ?? textColors.default;
+  const circleClass = props.circle
+    ? 'w-4 h-4 p-0 rounded-full'
+    : 'px-2.5 py-0.5';
 
-  return [bgClass, textClass];
+  return [bgClass, textClass, circleClass];
 });
 </script>
 
 <template>
-  <span class="text-xs font-semibold mr-2 px-2.5 py-0.5" :class="badgeClass">{{
+  <span class="text-xs font-semibold" :class="badgeClass">{{
     props.label
   }}</span>
 </template>

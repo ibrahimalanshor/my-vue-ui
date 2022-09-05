@@ -23,19 +23,12 @@ const handleClickVisible = () => (alert.visible = true);
         </option>
       </select>
       <input
-        type="radio"
-        id="without-icon-radio"
-        :value="false"
-        v-model="alert.withIcon"
-      />
-      <label for="without-icon-radio">Without Icon</label>
-      <input
-        type="radio"
-        id="with-icon-radio"
+        type="checkbox"
+        id="alert-with-icon"
         :value="true"
         v-model="alert.withIcon"
       />
-      <label for="with-icon-radio">With Icon</label>
+      <label for="alert-with-icon">With Icon</label>
       <button v-if="!alert.visible" v-on:click="handleClickVisible">
         Show
       </button>
