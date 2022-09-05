@@ -10,6 +10,14 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
+  size: {
+    type: String,
+    default: 'default',
+  },
+  outline: {
+    type: Boolean,
+    default: false,
+  },
   loading: {
     type: Boolean,
     default: false,
@@ -25,12 +33,28 @@ const buttonClass = computed(() => {
     error: 'bg-red-700 hover:bg-red-800',
   };
 
+  const bgOutlineColors = {
+    default: 'bg-white hover:bg-gray-100 border border-gray-300',
+    primary: 'border border-blue-700 hover:bg-blue-800',
+    success: 'border border-green-700 hover:bg-green-800',
+    warning: 'border border-yellow-400 hover:bg-yellow-500',
+    error: 'border border-red-700 hover:bg-red-800',
+  };
+
   const textColors = {
     default: 'text-gray-900',
     primary: 'text-white',
     success: 'text-white',
     warning: 'text-white',
     error: 'text-white',
+  };
+
+  const textOutlineColors = {
+    default: 'text-gray-900 hover:text-white',
+    primary: 'text-blue-700 hover:text-white',
+    success: 'text-green-700 hover:text-white',
+    warning: 'text-yellow-400 hover:text-white',
+    error: 'text-red-700 hover:text-white',
   };
 
   const focusColors = {
@@ -41,15 +65,34 @@ const buttonClass = computed(() => {
     error: 'focus:ring-red-300',
   };
 
-  const bgClass = bgColors[props.color] ?? bgColors.default;
-  const textClass = textColors[props.color] ?? textColors.default;
-  const focusClass = focusColors[props.color] ?? focusColors.default;
+  const sizes = {
+    default: 'px-5 py-2.5 text-sm',
+    xs: 'py-2 px-3 text-xs',
+    sm: 'py-2 px-3 text-sm',
+    lg: 'py-3 px-5 text-base',
+    xl: 'py-3.5 px-6 text-base',
+  };
 
-  return [bgClass, textClass, focusClass];
+  const bgClass = props.outline
+    ? bgOutlineColors[props.color] ?? bgOutlineColors.default
+    : bgColors[props.color] ?? bgColors.default;
+  const textClass = props.outline
+    ? textOutlineColors[props.color] ?? textOutlineColors.default
+    : textColors[props.color] ?? textColors.default;
+  const focusClass = focusColors[props.color] ?? focusColors.default;
+  const sizeClass = sizes[props.size] ?? sizes.default;
+
+  return [bgClass, textClass, focusClass, sizeClass];
 });
 
 const iconClass = computed(() => {
   const baseClass = 'mr-2 -ml-1 w-5 h-5';
+
+  return [baseClass];
+});
+
+const badgeClass = computed(() => {
+  const baseClass = 'ml-2';
 
   return [baseClass];
 });
@@ -58,7 +101,7 @@ const iconClass = computed(() => {
 <template>
   <button
     type="button"
-    class="focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none flex items-center disabled:opacity-75"
+    class="focus:ring-4 font-medium rounded-lg text-sm focus:outline-none flex items-center disabled:opacity-75"
     :class="buttonClass"
   >
     <svg
@@ -81,6 +124,6 @@ const iconClass = computed(() => {
     </svg>
     <slot name="icon" :icon-class="iconClass" v-if="!loading" />
     {{ props.loading ? 'Loading' : props.label }}
-    <slot name="badge" v-if="!loading" />
+    <slot name="badge" :badge-class="badgeClass" v-if="!loading" />
   </button>
 </template>

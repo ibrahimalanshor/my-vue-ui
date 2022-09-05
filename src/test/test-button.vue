@@ -4,9 +4,12 @@ import { BaseButton, BaseBadge } from '@/components';
 
 const button = reactive({
   colors: [null, 'primary', 'success', 'error', 'warning'],
+  sizes: [null, 'xs', 'sm', 'lg', 'xl'],
   color: null,
+  size: null,
   text: 'Button',
   loading: false,
+  outline: false,
   disabled: false,
   withIcon: false,
   withBadge: false,
@@ -20,6 +23,11 @@ const button = reactive({
       <select v-model="button.color">
         <option v-for="color in button.colors" :key="color" :value="color">
           {{ color }}
+        </option>
+      </select>
+      <select v-model="button.size">
+        <option v-for="size in button.sizes" :key="size" :value="size">
+          {{ size }}
         </option>
       </select>
       <input
@@ -50,33 +58,46 @@ const button = reactive({
         v-model="button.disabled"
       />
       <label for="button-disabled">Disabled</label>
+      <input
+        type="checkbox"
+        id="button-outline"
+        :value="true"
+        v-model="button.outline"
+      />
+      <label for="button-outline">Outline</label>
     </div>
 
     <base-button
       :color="button.color"
+      :size="button.size"
       :label="button.text"
       :loading="button.loading"
       :disabled="button.disabled"
+      :outline="button.outline"
       v-if="!button.withIcon && !button.withBadge"
     />
 
     <template v-else>
       <base-button
         :color="button.color"
+        :size="button.size"
         :label="button.text"
         :loading="button.loading"
         :disabled="button.disabled"
+        :outline="button.outline"
         v-if="button.withBadge"
       >
-        <template #badge>
-          <base-badge :class="badgeClass" label="2" circle />
+        <template #badge="{ badgeClass }">
+          <base-badge :class="badgeClass" color="primary" label="2" circle />
         </template>
       </base-button>
       <base-button
         :color="button.color"
+        :size="button.size"
         :label="button.text"
         :loading="button.loading"
         :disabled="button.disabled"
+        :outline="button.outline"
         v-else-if="button.withIcon"
       >
         <template #icon="{ iconClass }">
