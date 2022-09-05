@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky install",
-    "e": "prettier --write src"
+    "prepare": "husky install"
   },
   "dependencies": {
     "flowbite": "^1.5.3",
