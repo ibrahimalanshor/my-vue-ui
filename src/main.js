@@ -2,4 +2,10 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 
-createApp(App).mount('#app');
+import vClickOutside from 'click-outside-vue3';
+
+const app = createApp(App);
+
+app.use(vClickOutside);
+
+app.mount('#app');

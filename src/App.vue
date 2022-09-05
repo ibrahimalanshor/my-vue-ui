@@ -1,5 +1,11 @@
 <script setup>
-import { TestAlert, TestCollapse, TestBadge, TestButton } from '@/test';
+import {
+  TestAlert,
+  TestCollapse,
+  TestBadge,
+  TestButton,
+  TestDropdown,
+} from '@/test';
 </script>
 
 <template>
@@ -8,5 +14,6 @@ import { TestAlert, TestCollapse, TestBadge, TestButton } from '@/test';
     <test-collapse />
     <test-badge />
     <test-button />
+    <test-dropdown />
   </div>
 </template>
