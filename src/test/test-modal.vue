@@ -16,7 +16,7 @@ const handleClickShow = () => {
 
 <template>
   <div>
-    <button v-on:click="handleClickShow">Show</button>
+    <button v-on:click="handleClickShow">Show Modal</button>
     <base-modal
       :title="modal.title"
       :header="modal.header"
