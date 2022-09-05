@@ -5,7 +5,7 @@ import { reactive } from 'vue';
 const badge = reactive({
   colors: [null, 'primary', 'success', 'error', 'warning'],
   color: null,
-  label: 'Badge',
+  text: 'Badge',
 });
 </script>
 
