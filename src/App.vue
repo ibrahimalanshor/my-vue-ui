@@ -7,6 +7,7 @@ import {
   TestDropdown,
   TestModal,
   TestPopup,
+  TestSkeleton,
 } from '@/test';
 </script>
 
@@ -19,5 +20,6 @@ import {
     <test-dropdown />
     <test-modal />
     <test-popup />
+    <test-skeleton />
   </div>
 </template>
