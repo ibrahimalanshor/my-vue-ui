@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -19,6 +19,10 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'close']);
 
 const visible = ref(props.modelValue);
+
+const titleClass = computed(() => {
+  return 'text-xl font-semibold text-gray-900';
+});
 
 function close() {
   visible.value = false;
@@ -56,11 +60,11 @@ watch(
         <div class="relative bg-white rounded-lg shadow">
           <!-- Modal header -->
           <div
-            class="flex justify-between items-start p-4 rounded-t border-b"
+            class="flex justify-between items-center p-4 rounded-t border-b"
             v-if="props.header"
           >
-            <slot name="title">
-              <h3 class="text-xl font-semibold text-gray-900">
+            <slot name="title" :class="titleClass">
+              <h3 :class="titleClass">
                 {{ props.title }}
               </h3>
             </slot>
