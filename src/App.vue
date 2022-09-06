@@ -17,6 +17,7 @@ import {
   TestFile,
   TestSelect,
   TestCheckbox,
+  TestRadio,
 } from '@/test';
 </script>
 
@@ -39,5 +40,6 @@ import {
     <test-file />
     <test-select />
     <test-checkbox />
+    <test-radio />
   </div>
 </template>
