@@ -13,3 +13,4 @@ export { default as TestSpinner } from './test-spinner.vue';
 export { default as TestToast } from './test-toast.vue';
 export { default as TestInput } from './test-input.vue';
 export { default as TestFile } from './test-file.vue';
+export { default as TestSelect } from './test-select.vue';
