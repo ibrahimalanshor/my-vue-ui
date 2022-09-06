@@ -18,6 +18,7 @@ import {
   TestSelect,
   TestCheckbox,
   TestRadio,
+  TestToggle,
 } from '@/test';
 </script>
 
@@ -41,5 +42,6 @@ import {
     <test-select />
     <test-checkbox />
     <test-radio />
+    <test-toggle />
   </div>
 </template>

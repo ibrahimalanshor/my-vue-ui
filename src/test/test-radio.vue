@@ -28,6 +28,7 @@ const handleChange = () => console.log('onchange');
       value="radio.value"
       v-model="radio.model"
       v-on:change="handleChange"
+      disabled
     ></base-radio>
   </div>
 </template>
