@@ -12,3 +12,4 @@ export { default as BaseTable } from './base-table.vue';
 export { default as BaseSpinner } from './base-spinner.vue';
 export { default as BaseToast } from './base-toast.vue';
 export { default as BaseInput } from './base-input.vue';
+export { default as BaseFile } from './base-file.vue';
