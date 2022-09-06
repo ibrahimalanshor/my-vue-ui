@@ -15,6 +15,7 @@ import {
   TestToast,
   TestInput,
   TestFile,
+  TestSelect,
 } from '@/test';
 </script>
 
@@ -35,5 +36,6 @@ import {
     <test-toast />
     <test-input />
     <test-file />
+    <test-select />
   </div>
 </template>
