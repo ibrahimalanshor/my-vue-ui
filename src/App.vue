@@ -19,6 +19,7 @@ import {
   TestCheckbox,
   TestRadio,
   TestToggle,
+  TestTextarea,
 } from '@/test';
 </script>
 
@@ -38,6 +39,7 @@ import {
     <test-spinner />
     <test-toast />
     <test-input />
+    <test-textarea />
     <test-file />
     <test-select />
     <test-checkbox />
