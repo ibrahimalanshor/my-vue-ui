@@ -12,6 +12,7 @@ import {
   TestProgress,
   TestTable,
   TestSpinner,
+  TestToast,
 } from '@/test';
 </script>
 
@@ -29,5 +30,6 @@ import {
     <test-progress />
     <test-table />
     <test-spinner />
+    <test-toast />
   </div>
 </template>
