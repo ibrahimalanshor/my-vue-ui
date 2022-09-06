@@ -19,9 +19,6 @@ const visible = ref(props.modelValue);
 const iconClass = computed(() => {
   return 'w-5 h-5';
 });
-const contentClass = computed(() => {
-  return 'mb-5 text-lg font-normal text-gray-500';
-});
 
 function close() {
   visible.value = false;
