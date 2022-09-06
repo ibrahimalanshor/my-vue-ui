@@ -8,3 +8,4 @@ export { default as TestPopup } from './test-popup.vue';
 export { default as TestSkeleton } from './test-skeleton.vue';
 export { default as TestPagination } from './test-pagination.vue';
 export { default as TestProgress } from './test-progress.vue';
+export { default as TestTable } from './test-table.vue';
