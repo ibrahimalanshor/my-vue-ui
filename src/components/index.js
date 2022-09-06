@@ -7,3 +7,4 @@ export { default as BaseModal } from './base-modal.vue';
 export { default as BasePopup } from './base-popup.vue';
 export { default as BaseSkeleton } from './base-skeleton.vue';
 export { default as BasePagination } from './base-pagination.vue';
+export { default as BaseProgress } from './base-progress.vue';
