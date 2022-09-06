@@ -14,6 +14,7 @@ import {
   TestSpinner,
   TestToast,
   TestInput,
+  TestFile,
 } from '@/test';
 </script>
 
@@ -33,5 +34,6 @@ import {
     <test-spinner />
     <test-toast />
     <test-input />
+    <test-file />
   </div>
 </template>

@@ -3,10 +3,6 @@ import { computed, ref, watch } from 'vue';
 
 const props = defineProps({
   modelValue: String,
-  size: {
-    type: String,
-    default: 'default',
-  },
   color: {
     type: String,
     default: 'default',
@@ -17,11 +13,6 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const value = ref(props.modelValue);
 
 const inputClass = computed(() => {
-  const sizes = {
-    default: 'p-2.5 text-sm',
-    sm: 'p-2 text-xs',
-    lg: 'p-4 text-md',
-  };
   const colors = {
     default:
       'bg-gray-50 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500',
@@ -35,13 +26,14 @@ const inputClass = computed(() => {
       'bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500',
   };
 
-  const sizeClass = sizes[props.size] ?? sizes.default;
   const colorClass = colors[props.color] ?? colors.default;
 
-  return [sizeClass, colorClass];
+  return [colorClass];
 });
 
-const handleInput = () => {
+const handleChange = (e) => {
+  value.value = e.target.value;
+
   emit('update:modelValue', value.value);
   emit('change', value.value);
 };
@@ -56,11 +48,9 @@ watch(
 
 <template>
   <input
-    type="text"
-    class="border rounded-lg block w-full disabled:bg-gray-100 read-only:bg-gray-100"
+    class="block w-full text-sm rounded-lg border cursor-pointer disabled:bg-gray-100"
     :class="inputClass"
-    v-model="value"
-    v-on:input="handleInput"
-    placeholder="Placeholder"
+    type="file"
+    v-on:change="handleChange"
   />
 </template>
