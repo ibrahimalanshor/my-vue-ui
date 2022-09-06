@@ -18,3 +18,4 @@ export { default as BaseCheckbox } from './base-checkbox.vue';
 export { default as BaseRadio } from './base-radio.vue';
 export { default as BaseToggle } from './base-toggle.vue';
 export { default as BaseTextarea } from './base-textarea.vue';
+export { default as BaseForm } from './base-form.vue';

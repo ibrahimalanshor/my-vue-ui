@@ -20,6 +20,7 @@ import {
   TestRadio,
   TestToggle,
   TestTextarea,
+  TestForm,
 } from '@/test';
 </script>
 
@@ -45,5 +46,6 @@ import {
     <test-checkbox />
     <test-radio />
     <test-toggle />
+    <test-form />
   </div>
 </template>
