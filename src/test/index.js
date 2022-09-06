@@ -16,3 +16,4 @@ export { default as TestFile } from './test-file.vue';
 export { default as TestSelect } from './test-select.vue';
 export { default as TestCheckbox } from './test-checkbox.vue';
 export { default as TestRadio } from './test-radio.vue';
+export { default as TestToggle } from './test-toggle.vue';
