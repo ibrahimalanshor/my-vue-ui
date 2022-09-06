@@ -18,3 +18,4 @@ export { default as TestCheckbox } from './test-checkbox.vue';
 export { default as TestRadio } from './test-radio.vue';
 export { default as TestToggle } from './test-toggle.vue';
 export { default as TestTextarea } from './test-textarea.vue';
+export { default as TestForm } from './test-form.vue';
