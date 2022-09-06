@@ -7,3 +7,4 @@ export { default as TestModal } from './test-modal.vue';
 export { default as TestPopup } from './test-popup.vue';
 export { default as TestSkeleton } from './test-skeleton.vue';
 export { default as TestPagination } from './test-pagination.vue';
+export { default as TestProgress } from './test-progress.vue';
