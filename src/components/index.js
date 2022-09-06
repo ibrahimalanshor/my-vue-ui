@@ -15,3 +15,4 @@ export { default as BaseInput } from './base-input.vue';
 export { default as BaseFile } from './base-file.vue';
 export { default as BaseSelect } from './base-select.vue';
 export { default as BaseCheckbox } from './base-checkbox.vue';
+export { default as BaseRadio } from './base-radio.vue';
