@@ -10,6 +10,7 @@ import {
   TestSkeleton,
   TestPagination,
   TestProgress,
+  TestTable,
 } from '@/test';
 </script>
 
@@ -25,5 +26,6 @@ import {
     <test-skeleton />
     <test-pagination />
     <test-progress />
+    <test-table />
   </div>
 </template>
