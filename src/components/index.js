@@ -9,3 +9,4 @@ export { default as BaseSkeleton } from './base-skeleton.vue';
 export { default as BasePagination } from './base-pagination.vue';
 export { default as BaseProgress } from './base-progress.vue';
 export { default as BaseTable } from './base-table.vue';
+export { default as BaseSpinner } from './base-spinner.vue';

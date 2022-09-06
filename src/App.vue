@@ -11,6 +11,7 @@ import {
   TestPagination,
   TestProgress,
   TestTable,
+  TestSpinner,
 } from '@/test';
 </script>
 
@@ -27,5 +28,6 @@ import {
     <test-pagination />
     <test-progress />
     <test-table />
+    <test-spinner />
   </div>
 </template>
