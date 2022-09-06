@@ -9,3 +9,4 @@ export { default as TestSkeleton } from './test-skeleton.vue';
 export { default as TestPagination } from './test-pagination.vue';
 export { default as TestProgress } from './test-progress.vue';
 export { default as TestTable } from './test-table.vue';
+export { default as TestSpinner } from './test-spinner.vue';
