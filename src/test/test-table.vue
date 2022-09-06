@@ -20,8 +20,13 @@ const table = reactive({
   data: [
     {
       id: 1,
-      name: 'Ibrahim Al Anshor',
-      address: 'Banjarnegara, Indonesia',
+      name: 'Person 1',
+      address: 'Bandung, Indonesia',
+    },
+    {
+      id: 2,
+      name: 'Person',
+      address: 'Bandung, Indonesia',
     },
   ],
 });

@@ -21,7 +21,7 @@ const headTdClass = computed(() => {
 });
 
 const bodyTrClass = computed(() => {
-  return 'bg-white border-b dark:bg-gray-900 dark:border-gray-700';
+  return 'bg-white border-b hover:bg-gray-50';
 });
 
 const bodyTdClass = computed(() => {
@@ -31,10 +31,8 @@ const bodyTdClass = computed(() => {
 
 <template>
   <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead
-        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-      >
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <slot name="head" :td-class="headTdClass">
           <tr>
             <th
@@ -66,7 +64,7 @@ const bodyTdClass = computed(() => {
         </slot>
       </tbody>
       <tbody v-else>
-        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+        <tr class="bg-white border-b">
           <td :colspan="props.columns.length" class="py-4 px-6">Data Empty</td>
         </tr>
       </tbody>
