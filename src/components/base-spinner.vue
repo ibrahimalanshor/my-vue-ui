@@ -1,25 +1,31 @@
-<script setup>
-import { computed } from 'vue';
+<script>
+import { computed, defineComponent } from 'vue';
 
-const props = defineProps({
-  color: {
-    type: String,
-    default: 'default',
+export default defineComponent({
+  name: 'base-spinner',
+  props: {
+    color: {
+      type: String,
+      default: 'default',
+    },
   },
-});
+  setup(props) {
+    const spinnerClass = computed(() => {
+      const fillColors = {
+        default: 'fill-gray-300',
+        primary: 'fill-blue-600',
+        success: 'fill-green-500',
+        warning: 'fill-yellow-400',
+        error: 'fill-red-600',
+      };
 
-const spinnerClass = computed(() => {
-  const fillColors = {
-    default: 'fill-gray-300',
-    primary: 'fill-blue-600',
-    success: 'fill-green-500',
-    warning: 'fill-yellow-400',
-    error: 'fill-red-600',
-  };
+      const fillClass = fillColors[props.color] ?? fillColors.default;
 
-  const fillClass = fillColors[props.color] ?? fillColors.default;
+      return [fillClass];
+    });
 
-  return [fillClass];
+    return { spinnerClass };
+  },
 });
 </script>
 

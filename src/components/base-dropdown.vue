@@ -1,71 +1,85 @@
-<script setup>
-import { ref, watch, computed } from 'vue';
+<script>
+import { ref, watch, computed, defineComponent } from 'vue';
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+export default defineComponent({
+  name: 'base-dropdown',
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    options: Array,
+    size: {
+      type: String,
+      default: 'default',
+    },
+    position: {
+      type: String,
+      default: 'left',
+    },
   },
-  options: Array,
-  size: {
-    type: String,
-    default: 'default',
+  emits: ['update:modelValue', 'click-option'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
+
+    const dropdownClass = computed(() => {
+      const sizes = {
+        default: 'w-44',
+        md: 'w-56',
+        lg: 'w-72',
+        auto: 'w-auto',
+      };
+      const positions = {
+        left: 'left-0',
+        right: 'right-0',
+      };
+
+      const sizeClass = sizes[props.size] ?? sizes.default;
+      const positionClass = positions[props.position] ?? positions.default;
+
+      return [sizeClass, positionClass];
+    });
+    const wrapperClass = computed(() => {
+      return 'py-1 text-sm text-gray-700';
+    });
+    const optionClass = computed(() => {
+      return 'block py-2 px-4 hover:bg-gray-100';
+    });
+
+    const handleClickToggle = () => {
+      visible.value = !visible.value;
+
+      emit('update:modelValue', visible.value);
+    };
+    const handleClickOutside = () => {
+      visible.value = false;
+
+      emit('update:modelValue', visible.value);
+    };
+    const handleClickOption = (option) => {
+      option.onClick && option.onClick(option);
+
+      emit('click-option', option);
+    };
+
+    watch(
+      () => props.modelValue,
+      () => {
+        visible.value = props.modelValue;
+      }
+    );
+
+    return {
+      visible,
+      handleClickToggle,
+      dropdownClass,
+      handleClickOutside,
+      wrapperClass,
+      optionClass,
+      handleClickOption,
+    };
   },
-  position: {
-    type: String,
-    default: 'left',
-  },
 });
-const emit = defineEmits(['update:modelValue', 'click-option']);
-
-const visible = ref(props.modelValue);
-
-const dropdownClass = computed(() => {
-  const sizes = {
-    default: 'w-44',
-    md: 'w-56',
-    lg: 'w-72',
-    auto: 'w-auto',
-  };
-  const positions = {
-    left: 'left-0',
-    right: 'right-0',
-  };
-
-  const sizeClass = sizes[props.size] ?? sizes.default;
-  const positionClass = positions[props.position] ?? positions.default;
-
-  return [sizeClass, positionClass];
-});
-const wrapperClass = computed(() => {
-  return 'py-1 text-sm text-gray-700';
-});
-const optionClass = computed(() => {
-  return 'block py-2 px-4 hover:bg-gray-100';
-});
-
-const handleClickToggle = () => {
-  visible.value = !visible.value;
-
-  emit('update:modelValue', visible.value);
-};
-const handleClickOutside = () => {
-  visible.value = false;
-
-  emit('update:modelValue', visible.value);
-};
-const handleClickOption = (option) => {
-  option.onClick && option.onClick(option);
-
-  emit('click-option', option);
-};
-
-watch(
-  () => props.modelValue,
-  () => {
-    visible.value = props.modelValue;
-  }
-);
 </script>
 
 <template>
