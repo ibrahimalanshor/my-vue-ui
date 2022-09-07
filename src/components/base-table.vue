@@ -1,31 +1,37 @@
-<script setup>
-import { computed } from 'vue';
+<script>
+import { computed, defineComponent } from 'vue';
 
-const props = defineProps({
-  id: {
-    type: String,
-    default: 'id',
+export default defineComponent({
+  name: 'base-table',
+  props: {
+    id: {
+      type: String,
+      default: 'id',
+    },
+    columns: {
+      type: Array,
+      required: true,
+    },
+    data: {
+      type: Array,
+      required: true,
+    },
   },
-  columns: {
-    type: Array,
-    required: true,
+  setup(props) {
+    const headTdClass = computed(() => {
+      return 'py-3 px-6';
+    });
+
+    const bodyTrClass = computed(() => {
+      return 'bg-white border-b hover:bg-gray-50';
+    });
+
+    const bodyTdClass = computed(() => {
+      return 'py-4 px-6';
+    });
+
+    return { headTdClass, bodyTrClass, bodyTdClass };
   },
-  data: {
-    type: Array,
-    required: true,
-  },
-});
-
-const headTdClass = computed(() => {
-  return 'py-3 px-6';
-});
-
-const bodyTrClass = computed(() => {
-  return 'bg-white border-b hover:bg-gray-50';
-});
-
-const bodyTdClass = computed(() => {
-  return 'py-4 px-6';
 });
 </script>
 
@@ -38,7 +44,7 @@ const bodyTdClass = computed(() => {
             <th
               scope="col"
               :class="headTdClass"
-              v-for="column in props.columns"
+              v-for="column in columns"
               :key="column.key"
             >
               {{ column.name }}
@@ -46,16 +52,12 @@ const bodyTdClass = computed(() => {
           </tr>
         </slot>
       </thead>
-      <tbody v-if="props.data.length">
+      <tbody v-if="data.length">
         <slot name="body" :tr-class="bodyTrClass" :td-class="bodyTdClass">
-          <tr
-            :class="bodyTrClass"
-            v-for="data in props.data"
-            :key="data[props.id]"
-          >
+          <tr :class="bodyTrClass" v-for="data in data" :key="data[id]">
             <td
               :class="bodyTdClass"
-              v-for="column in props.columns"
+              v-for="column in columns"
               :key="column.key"
             >
               {{ data[column.key] }}
@@ -65,7 +67,7 @@ const bodyTdClass = computed(() => {
       </tbody>
       <tbody v-else>
         <tr class="bg-white border-b">
-          <td :colspan="props.columns.length" class="py-4 px-6">Data Empty</td>
+          <td :colspan="columns.length" class="py-4 px-6">Data Empty</td>
         </tr>
       </tbody>
     </table>

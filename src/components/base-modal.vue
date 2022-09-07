@@ -1,49 +1,55 @@
-<script setup>
-import { ref, watch, computed } from 'vue';
+<script>
+import { ref, watch, computed, defineComponent } from 'vue';
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+export default defineComponent({
+  name: 'base-modal',
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    title: String,
+    header: {
+      type: Boolean,
+      default: true,
+    },
+    footer: {
+      type: Boolean,
+      default: false,
+    },
   },
-  title: String,
-  header: {
-    type: Boolean,
-    default: true,
-  },
-  footer: {
-    type: Boolean,
-    default: false,
+  emits: ['update:modelValue', 'close'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
+
+    const titleClass = computed(() => {
+      return 'text-xl font-semibold text-gray-900';
+    });
+
+    function close() {
+      visible.value = false;
+
+      emit('update:modelValue', visible.value);
+      emit('close');
+    }
+
+    const handleClickClose = () => {
+      close();
+    };
+    const handleClickOutside = () => {
+      close();
+    };
+
+    watch(
+      () => props.modelValue,
+      () => {
+        visible.value = props.modelValue;
+      }
+    );
+
+    return { visible, handleClickOutside, titleClass, handleClickClose };
   },
 });
-const emit = defineEmits(['update:modelValue', 'close']);
-
-const visible = ref(props.modelValue);
-
-const titleClass = computed(() => {
-  return 'text-xl font-semibold text-gray-900';
-});
-
-function close() {
-  visible.value = false;
-
-  emit('update:modelValue', visible.value);
-  emit('close');
-}
-
-const handleClickClose = () => {
-  close();
-};
-const handleClickOutside = () => {
-  close();
-};
-
-watch(
-  () => props.modelValue,
-  () => {
-    visible.value = props.modelValue;
-  }
-);
 </script>
 
 <template>
@@ -61,11 +67,11 @@ watch(
           <!-- Modal header -->
           <div
             class="flex justify-between items-center p-4 rounded-t border-b"
-            v-if="props.header"
+            v-if="header"
           >
             <slot name="title" :class="titleClass">
               <h3 :class="titleClass">
-                {{ props.title }}
+                {{ title }}
               </h3>
             </slot>
             <button
@@ -95,7 +101,7 @@ watch(
           <!-- Modal footer -->
           <div
             class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200"
-            v-if="props.footer"
+            v-if="footer"
           >
             <slot name="footer" />
           </div>

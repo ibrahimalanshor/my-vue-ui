@@ -1,44 +1,56 @@
-<script setup>
-import { ref, computed, watch } from 'vue';
+<script>
+import { ref, computed, watch, defineComponent } from 'vue';
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+export default defineComponent({
+  name: 'base-popup',
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    text: String,
   },
-  text: String,
+  emits: ['update:modelValue', 'close'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
+
+    const iconClass = computed(() => {
+      return 'mx-auto mb-4 w-14 h-14 text-gray-400';
+    });
+    const contentClass = computed(() => {
+      return 'mb-5 text-lg font-normal text-gray-500';
+    });
+
+    function close() {
+      visible.value = false;
+
+      emit('update:modelValue', visible.value);
+      emit('close');
+    }
+
+    const handleClickClose = () => {
+      close();
+    };
+    const handleClickOutside = () => {
+      close();
+    };
+
+    watch(
+      () => props.modelValue,
+      () => {
+        visible.value = props.modelValue;
+      }
+    );
+
+    return {
+      visible,
+      iconClass,
+      contentClass,
+      handleClickClose,
+      handleClickOutside,
+    };
+  },
 });
-const emit = defineEmits(['update:modelValue', 'close']);
-
-const visible = ref(props.modelValue);
-
-const iconClass = computed(() => {
-  return 'mx-auto mb-4 w-14 h-14 text-gray-400';
-});
-const contentClass = computed(() => {
-  return 'mb-5 text-lg font-normal text-gray-500';
-});
-
-function close() {
-  visible.value = false;
-
-  emit('update:modelValue', visible.value);
-  emit('close');
-}
-
-const handleClickClose = () => {
-  close();
-};
-const handleClickOutside = () => {
-  close();
-};
-
-watch(
-  () => props.modelValue,
-  () => {
-    visible.value = props.modelValue;
-  }
-);
 </script>
 
 <template>
@@ -91,7 +103,7 @@ watch(
               </svg>
             </slot>
             <slot name="content" :content-class="contentClass">
-              <h3 :class="contentClass">{{ props.text }}</h3>
+              <h3 :class="contentClass">{{ text }}</h3>
             </slot>
             <slot name="footer" />
           </div>

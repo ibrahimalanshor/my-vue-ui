@@ -1,100 +1,106 @@
-<script setup>
-import { computed } from 'vue';
+<script>
+import { computed, defineComponent } from 'vue';
 
-const props = defineProps({
-  label: {
-    type: String,
-    required: true,
+export default defineComponent({
+  name: 'base-button',
+  props: {
+    label: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
+      default: 'default',
+    },
+    size: {
+      type: String,
+      default: 'default',
+    },
+    outline: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  color: {
-    type: String,
-    default: 'default',
+  setup(props) {
+    const buttonClass = computed(() => {
+      const bgColors = {
+        default: 'bg-white hover:bg-gray-100 border border-gray-300',
+        primary: 'bg-blue-700 hover:bg-blue-800',
+        success: 'bg-green-700 hover:bg-green-800',
+        warning: 'bg-yellow-400 hover:bg-yellow-500',
+        error: 'bg-red-700 hover:bg-red-800',
+      };
+
+      const bgOutlineColors = {
+        default: 'bg-white hover:bg-gray-100 border border-gray-300',
+        primary: 'border border-blue-700 hover:bg-blue-800',
+        success: 'border border-green-700 hover:bg-green-800',
+        warning: 'border border-yellow-400 hover:bg-yellow-500',
+        error: 'border border-red-700 hover:bg-red-800',
+      };
+
+      const textColors = {
+        default: 'text-gray-900',
+        primary: 'text-white',
+        success: 'text-white',
+        warning: 'text-white',
+        error: 'text-white',
+      };
+
+      const textOutlineColors = {
+        default: 'text-gray-900 hover:text-white',
+        primary: 'text-blue-700 hover:text-white',
+        success: 'text-green-700 hover:text-white',
+        warning: 'text-yellow-400 hover:text-white',
+        error: 'text-red-700 hover:text-white',
+      };
+
+      const focusColors = {
+        default: ' focus:ring-gray-200',
+        primary: 'focus:ring-blue-300',
+        success: 'focus:ring-green-300',
+        warning: 'focus:ring-yellow-300',
+        error: 'focus:ring-red-300',
+      };
+
+      const sizes = {
+        default: 'px-5 py-2.5 text-sm',
+        xs: 'py-2 px-3 text-xs',
+        sm: 'py-2 px-3 text-sm',
+        lg: 'py-3 px-5 text-base',
+        xl: 'py-3.5 px-6 text-base',
+      };
+
+      const bgClass = props.outline
+        ? bgOutlineColors[props.color] ?? bgOutlineColors.default
+        : bgColors[props.color] ?? bgColors.default;
+      const textClass = props.outline
+        ? textOutlineColors[props.color] ?? textOutlineColors.default
+        : textColors[props.color] ?? textColors.default;
+      const focusClass = focusColors[props.color] ?? focusColors.default;
+      const sizeClass = sizes[props.size] ?? sizes.default;
+
+      return [bgClass, textClass, focusClass, sizeClass];
+    });
+
+    const iconClass = computed(() => {
+      const baseClass = 'mr-2 -ml-1 w-5 h-5';
+
+      return [baseClass];
+    });
+
+    const badgeClass = computed(() => {
+      const baseClass = 'ml-2';
+
+      return [baseClass];
+    });
+
+    return { buttonClass, iconClass, badgeClass };
   },
-  size: {
-    type: String,
-    default: 'default',
-  },
-  outline: {
-    type: Boolean,
-    default: false,
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-});
-
-const buttonClass = computed(() => {
-  const bgColors = {
-    default: 'bg-white hover:bg-gray-100 border border-gray-300',
-    primary: 'bg-blue-700 hover:bg-blue-800',
-    success: 'bg-green-700 hover:bg-green-800',
-    warning: 'bg-yellow-400 hover:bg-yellow-500',
-    error: 'bg-red-700 hover:bg-red-800',
-  };
-
-  const bgOutlineColors = {
-    default: 'bg-white hover:bg-gray-100 border border-gray-300',
-    primary: 'border border-blue-700 hover:bg-blue-800',
-    success: 'border border-green-700 hover:bg-green-800',
-    warning: 'border border-yellow-400 hover:bg-yellow-500',
-    error: 'border border-red-700 hover:bg-red-800',
-  };
-
-  const textColors = {
-    default: 'text-gray-900',
-    primary: 'text-white',
-    success: 'text-white',
-    warning: 'text-white',
-    error: 'text-white',
-  };
-
-  const textOutlineColors = {
-    default: 'text-gray-900 hover:text-white',
-    primary: 'text-blue-700 hover:text-white',
-    success: 'text-green-700 hover:text-white',
-    warning: 'text-yellow-400 hover:text-white',
-    error: 'text-red-700 hover:text-white',
-  };
-
-  const focusColors = {
-    default: ' focus:ring-gray-200',
-    primary: 'focus:ring-blue-300',
-    success: 'focus:ring-green-300',
-    warning: 'focus:ring-yellow-300',
-    error: 'focus:ring-red-300',
-  };
-
-  const sizes = {
-    default: 'px-5 py-2.5 text-sm',
-    xs: 'py-2 px-3 text-xs',
-    sm: 'py-2 px-3 text-sm',
-    lg: 'py-3 px-5 text-base',
-    xl: 'py-3.5 px-6 text-base',
-  };
-
-  const bgClass = props.outline
-    ? bgOutlineColors[props.color] ?? bgOutlineColors.default
-    : bgColors[props.color] ?? bgColors.default;
-  const textClass = props.outline
-    ? textOutlineColors[props.color] ?? textOutlineColors.default
-    : textColors[props.color] ?? textColors.default;
-  const focusClass = focusColors[props.color] ?? focusColors.default;
-  const sizeClass = sizes[props.size] ?? sizes.default;
-
-  return [bgClass, textClass, focusClass, sizeClass];
-});
-
-const iconClass = computed(() => {
-  const baseClass = 'mr-2 -ml-1 w-5 h-5';
-
-  return [baseClass];
-});
-
-const badgeClass = computed(() => {
-  const baseClass = 'ml-2';
-
-  return [baseClass];
 });
 </script>
 
@@ -105,7 +111,7 @@ const badgeClass = computed(() => {
     :class="buttonClass"
   >
     <svg
-      v-if="props.loading"
+      v-if="loading"
       aria-hidden="true"
       role="status"
       class="inline mr-3 w-4 h-4 text-white animate-spin"
@@ -123,7 +129,7 @@ const badgeClass = computed(() => {
       />
     </svg>
     <slot name="icon" :icon-class="iconClass" v-if="!loading" />
-    {{ props.loading ? 'Loading' : props.label }}
+    {{ loading ? 'Loading' : label }}
     <slot name="badge" :badge-class="badgeClass" v-if="!loading" />
   </button>
 </template>

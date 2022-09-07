@@ -1,13 +1,19 @@
-<script setup>
-import { ref } from 'vue';
+<script>
+import { ref, defineComponent } from 'vue';
 
-const props = defineProps({
-  label: String,
+export default defineComponent({
+  name: 'base-collapse',
+  props: {
+    label: String,
+  },
+  setup(props) {
+    const visible = ref(false);
+
+    const handleClickLabel = () => (visible.value = !visible.value);
+
+    return { visible, handleClickLabel };
+  },
 });
-
-const visible = ref(false);
-
-const handleClickLabel = () => (visible.value = !visible.value);
 </script>
 
 <template>
@@ -16,7 +22,7 @@ const handleClickLabel = () => (visible.value = !visible.value);
       class="flex items-center justify-between"
       v-on:click="handleClickLabel"
     >
-      <slot name="label">{{ props.label }}</slot>
+      <slot name="label">{{ label }}</slot>
       <svg
         data-accordion-icon
         class="w-6 h-6 shrink-0"

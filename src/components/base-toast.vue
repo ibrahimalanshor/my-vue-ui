@@ -1,42 +1,48 @@
-<script setup>
-import { ref, computed, watch } from 'vue';
+<script>
+import { ref, computed, watch, defineComponent } from 'vue';
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
+export default defineComponent({
+  name: 'base-toast',
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+    withIcon: {
+      type: Boolean,
+      default: false,
+    },
+    text: String,
   },
-  withIcon: {
-    type: Boolean,
-    default: false,
+  emits: ['update:modelValue', 'close'],
+  setup(props, { emit }) {
+    const visible = ref(props.modelValue);
+
+    const iconClass = computed(() => {
+      return 'w-5 h-5';
+    });
+
+    function close() {
+      visible.value = false;
+
+      emit('update:modelValue', visible.value);
+      emit('close');
+    }
+
+    const handleClickClose = () => {
+      close();
+    };
+
+    watch(
+      () => props.modelValue,
+      () => {
+        visible.value = props.modelValue;
+      }
+    );
+
+    return { visible, iconClass, handleClickClose };
   },
-  text: String,
 });
-const emit = defineEmits(['update:modelValue', 'close']);
-
-const visible = ref(props.modelValue);
-
-const iconClass = computed(() => {
-  return 'w-5 h-5';
-});
-
-function close() {
-  visible.value = false;
-
-  emit('update:modelValue', visible.value);
-  emit('close');
-}
-
-const handleClickClose = () => {
-  close();
-};
-
-watch(
-  () => props.modelValue,
-  () => {
-    visible.value = props.modelValue;
-  }
-);
 </script>
 
 <template>
@@ -47,11 +53,11 @@ watch(
   >
     <div
       class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-blue-500 bg-blue-100 rounded-lg mr-3"
-      v-if="props.withIcon"
+      v-if="withIcon"
     >
       <slot name="icon" :icon-class="iconClass" />
     </div>
-    <div class="text-sm font-normal">{{ props.text }}</div>
+    <div class="text-sm font-normal">{{ text }}</div>
     <button
       type="button"
       class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
