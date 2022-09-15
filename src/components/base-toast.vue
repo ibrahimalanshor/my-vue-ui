@@ -13,10 +13,41 @@ export default defineComponent({
       default: false,
     },
     text: String,
+    color: {
+      type: String,
+      default: 'default',
+    },
   },
   emits: ['update:modelValue', 'close'],
   setup(props, { emit }) {
     const visible = ref(props.modelValue);
+
+    const iconWrapperClass = computed(() => {
+      const bgColors = {
+        default: 'bg-gray-100',
+        primary: 'bg-blue-100',
+        success: 'bg-green-100',
+        warning: 'bg-yellow-100',
+        error: 'bg-red-100',
+      };
+
+      const textColors = {
+        default: 'text-gray-500',
+        primary: 'text-blue-500',
+        success: 'text-green-500',
+        warning: 'text-yellow-500',
+        error: 'text-red-500',
+      };
+
+      const bgClass = props.outline
+        ? bgOutlineColors[props.color] ?? bgOutlineColors.default
+        : bgColors[props.color] ?? bgColors.default;
+      const textClass = props.outline
+        ? textOutlineColors[props.color] ?? textOutlineColors.default
+        : textColors[props.color] ?? textColors.default;
+
+      return [bgClass, textClass];
+    });
 
     const iconClass = computed(() => {
       return 'w-5 h-5';
@@ -40,7 +71,7 @@ export default defineComponent({
       }
     );
 
-    return { visible, iconClass, handleClickClose };
+    return { visible, iconClass, iconWrapperClass, handleClickClose };
   },
 });
 </script>
@@ -52,7 +83,8 @@ export default defineComponent({
     v-if="visible"
   >
     <div
-      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-blue-500 bg-blue-100 rounded-lg mr-3"
+      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 rounded-lg mr-3"
+      :class="iconWrapperClass"
       v-if="withIcon"
     >
       <slot name="icon" :icon-class="iconClass" />

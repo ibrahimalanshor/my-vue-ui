@@ -4,6 +4,8 @@ import { BaseToast } from '@/components';
 
 const toast = reactive({
   text: 'Set yourself free.',
+  colors: [null, 'primary', 'success', 'error', 'warning'],
+  color: null,
   withIcon: false,
   visible: false,
 });
@@ -15,6 +17,11 @@ const handleClickShow = () => {
 
 <template>
   <div>
+    <select v-model="toast.color">
+      <option v-for="color in toast.colors" :key="color" :value="color">
+        {{ color }}
+      </option>
+    </select>
     <input
       type="checkbox"
       :value="true"
@@ -25,6 +32,7 @@ const handleClickShow = () => {
     <button v-on:click="handleClickShow">Show Toast</button>
     <base-toast
       :text="toast.text"
+      :color="toast.color"
       v-model="toast.visible"
       :with-icon="toast.withIcon"
     >
