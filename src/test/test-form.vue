@@ -9,6 +9,7 @@ const form = reactive({
   size: null,
   disabled: false,
   readonly: false,
+  autofocus: false,
   value: null,
   label: 'Label',
 });
@@ -46,6 +47,13 @@ const handleChange = () => {
         v-model="form.readonly"
       />
       <label for="form-readonly">Readonly</label>
+      <input
+        type="checkbox"
+        id="form-autofocus"
+        :value="true"
+        v-model="form.autofocus"
+      />
+      <label for="form-autofocus">Autofocus</label>
     </div>
     {{ form.value }}
     <base-form
@@ -54,6 +62,7 @@ const handleChange = () => {
       :color="form.color"
       :disabled="form.disabled"
       :readonly="form.readonly"
+      :autofocus="form.autofocus"
       :label="form.label"
       helper="Helper Text"
       v-model="form.value"
