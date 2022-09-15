@@ -24,6 +24,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    block: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const buttonClass = computed(() => {
@@ -83,8 +87,9 @@ export default defineComponent({
         : textColors[props.color] ?? textColors.default;
       const focusClass = focusColors[props.color] ?? focusColors.default;
       const sizeClass = sizes[props.size] ?? sizes.default;
+      const blockClass = props.block ? 'w-full justify-center text-center' : '';
 
-      return [bgClass, textClass, focusClass, sizeClass];
+      return [bgClass, textClass, focusClass, sizeClass, blockClass];
     });
 
     const iconClass = computed(() => {
