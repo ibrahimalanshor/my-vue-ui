@@ -4,7 +4,7 @@ import { computed, ref, watch, defineComponent } from 'vue';
 export default defineComponent({
   name: 'base-input',
   props: {
-    modelValue: String,
+    modelValue: null,
     size: {
       type: String,
       default: 'default',
