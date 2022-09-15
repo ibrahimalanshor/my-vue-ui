@@ -11,8 +11,12 @@ const form = reactive({
   readonly: false,
   autofocus: false,
   block: true,
+  withLabelRight: false,
+  withButton: false,
   value: null,
   label: 'Label',
+  labelRight: 'Label Right',
+  button: 'Button',
 });
 
 const handleChange = () => {
@@ -24,6 +28,8 @@ const handleChange = () => {
   <div>
     <div class="mb-4">
       <input type="text" placeholder="Label" v-model="form.label" />
+      <input type="text" placeholder="Label Right" v-model="form.labelRight" />
+      <input type="text" placeholder="Button" v-model="form.button" />
       <select v-model="form.size">
         <option v-for="size in form.sizes" :key="size" :value="size">
           {{ size }}
@@ -62,6 +68,20 @@ const handleChange = () => {
         v-model="form.block"
       />
       <label for="form-block">Block</label>
+      <input
+        type="checkbox"
+        id="form-with-label-right"
+        :value="true"
+        v-model="form.withLabelRight"
+      />
+      <label for="form-with-label-right">Label Right</label>
+      <input
+        type="checkbox"
+        id="form-with-button"
+        :value="true"
+        v-model="form.withButton"
+      />
+      <label for="form-with-button">Button Text</label>
     </div>
     {{ form.value }}
     <base-form
@@ -73,6 +93,10 @@ const handleChange = () => {
       :block="form.block"
       :autofocus="form.autofocus"
       :label="form.label"
+      :label-right="form.labelRight"
+      :button="form.button"
+      :with-label-right="form.withLabelRight"
+      :with-button="form.withButton"
       helper="Helper Text"
       v-model="form.value"
       v-on:change="handleChange"
