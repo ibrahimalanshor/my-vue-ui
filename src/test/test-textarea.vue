@@ -9,6 +9,7 @@ const textarea = reactive({
   size: null,
   disabled: false,
   readonly: false,
+  block: true,
   value: null,
 });
 
@@ -44,6 +45,13 @@ const handleChange = () => {
         v-model="textarea.readonly"
       />
       <label for="textarea-readonly">Readonly</label>
+      <input
+        type="checkbox"
+        id="textarea-block"
+        :value="true"
+        v-model="textarea.block"
+      />
+      <label for="textarea-block">Block</label>
     </div>
     {{ textarea.value }}
     <base-textarea
@@ -51,6 +59,7 @@ const handleChange = () => {
       :color="textarea.color"
       :disabled="textarea.disabled"
       :readonly="textarea.readonly"
+      :block="textarea.block"
       v-model="textarea.value"
       v-on:change="handleChange"
     />

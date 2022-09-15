@@ -17,6 +17,10 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+    block: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
@@ -43,8 +47,9 @@ export default defineComponent({
 
       const sizeClass = sizes[props.size] ?? sizes.default;
       const colorClass = colors[props.color] ?? colors.default;
+      const blockClass = props.block ? 'w-full' : '';
 
-      return [sizeClass, colorClass];
+      return [sizeClass, colorClass, blockClass];
     });
 
     const handleChange = () => {
@@ -66,7 +71,7 @@ export default defineComponent({
 
 <template>
   <select
-    class="border text-sm rounded-lg block w-full disabled:bg-gray-100"
+    class="border text-sm rounded-lg block disabled:bg-gray-100"
     :class="selectClass"
     v-model="value"
     v-on:change="handleChange"

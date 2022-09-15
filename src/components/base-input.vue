@@ -4,7 +4,7 @@ import { computed, ref, watch, defineComponent } from 'vue';
 export default defineComponent({
   name: 'base-input',
   props: {
-    modelValue: String,
+    modelValue: null,
     size: {
       type: String,
       default: 'default',
@@ -12,6 +12,10 @@ export default defineComponent({
     color: {
       type: String,
       default: 'default',
+    },
+    block: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: ['update:modelValue', 'change'],
@@ -39,8 +43,9 @@ export default defineComponent({
 
       const sizeClass = sizes[props.size] ?? sizes.default;
       const colorClass = colors[props.color] ?? colors.default;
+      const blockClass = props.block ? 'w-full' : '';
 
-      return [sizeClass, colorClass];
+      return [sizeClass, colorClass, blockClass];
     });
 
     const handleInput = () => {
@@ -63,7 +68,7 @@ export default defineComponent({
 <template>
   <input
     type="text"
-    class="border rounded-lg block w-full disabled:bg-gray-100 read-only:bg-gray-100"
+    class="border rounded-lg block disabled:bg-gray-100 read-only:bg-gray-100"
     :class="inputClass"
     v-model="value"
     v-on:input="handleInput"

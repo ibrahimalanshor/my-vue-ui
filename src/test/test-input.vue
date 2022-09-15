@@ -9,6 +9,7 @@ const input = reactive({
   size: null,
   disabled: false,
   readonly: false,
+  block: true,
   value: null,
 });
 
@@ -44,12 +45,20 @@ const handleChange = () => {
         v-model="input.readonly"
       />
       <label for="input-readonly">Readonly</label>
+      <input
+        type="checkbox"
+        id="input-block"
+        :value="true"
+        v-model="input.block"
+      />
+      <label for="input-block">Block</label>
     </div>
     {{ input.value }}
     <base-input
       :size="input.size"
       :color="input.color"
       :disabled="input.disabled"
+      :block="input.block"
       :readonly="input.readonly"
       v-model="input.value"
       v-on:change="handleChange"

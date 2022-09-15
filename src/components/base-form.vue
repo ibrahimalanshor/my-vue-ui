@@ -8,8 +8,10 @@ export default defineComponent({
   props: {
     modelValue: String,
     label: String,
+    labelRight: String,
     id: String,
     helper: String,
+    button: String,
     placeholder: {
       type: String,
       default: 'Placeholder',
@@ -38,8 +40,20 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    block: {
+      type: Boolean,
+      default: false,
+    },
+    withButton: {
+      type: Boolean,
+      default: false,
+    },
+    withLabelRight: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ['update:modelValue', 'change'],
+  emits: ['update:modelValue', 'change', 'click-button'],
   setup(props, { emit }) {
     const value = ref(props.modelValue);
 
@@ -69,10 +83,22 @@ export default defineComponent({
 
       return [colorClass];
     });
+    const buttonClass = computed(() => {
+      const sizes = {
+        default: 'top-2.5 right-4 text-sm',
+        sm: 'top-2 right-3 text-xs',
+        lg: 'top-4 right-5 text-md',
+      };
+
+      return [sizes[props.size] ?? sizes.default];
+    });
 
     const handleChange = () => {
       emit('update:modelValue', value.value);
       emit('change', value.value);
+    };
+    const handleClickButton = () => {
+      emit('click-button');
     };
 
     watch(
@@ -82,32 +108,56 @@ export default defineComponent({
       }
     );
 
-    return { labelClass, value, handleChange, helperClass };
+    return {
+      labelClass,
+      value,
+      handleChange,
+      handleClickButton,
+      helperClass,
+      buttonClass,
+    };
   },
 });
 </script>
 
 <template>
-  <div>
-    <label
-      :for="id"
-      class="block mb-2 text-sm font-medium"
-      :class="labelClass"
-      >{{ label }}</label
-    >
+  <div :class="[block ? 'w-full' : 'w-[fit-content]']">
+    <div class="flex items-center align-center justify-between mb-2">
+      <label :for="id" class="block text-sm font-medium" :class="labelClass">{{
+        label
+      }}</label>
+      <div class="text-sm" v-if="withLabelRight">
+        <slot name="label-right">
+          <span>{{ labelRight }}</span>
+        </slot>
+      </div>
+    </div>
     <slot>
-      <base-input
-        :id="id"
-        :type="type"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :readonly="readonly"
-        :autofocus="autofocus"
-        :size="size"
-        :color="color"
-        v-model="value"
-        v-on:change="handleChange"
-      ></base-input>
+      <div class="relative">
+        <base-input
+          :id="id"
+          :type="type"
+          :placeholder="placeholder"
+          :disabled="disabled"
+          :readonly="readonly"
+          :autofocus="autofocus"
+          :block="block"
+          :size="size"
+          :color="color"
+          v-model="value"
+          v-on:change="handleChange"
+        ></base-input>
+        <button
+          class="absolute text-gray-500"
+          :class="buttonClass"
+          v-if="withButton"
+          v-on:click="handleClickButton"
+        >
+          <slot name="button">
+            {{ button }}
+          </slot>
+        </button>
+      </div>
     </slot>
     <p class="mt-2 text-sm" :class="helperClass" v-if="helper">
       {{ helper }}
