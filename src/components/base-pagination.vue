@@ -12,6 +12,14 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    disabledPrev: {
+      type: Boolean,
+      default: false,
+    },
+    disabledNext: {
+      type: Boolean,
+      default: false,
+    },
     size: {
       type: Number,
       required: true,
@@ -21,7 +29,7 @@ export default defineComponent({
   emits: ['prev', 'next', 'click-item'],
   setup(props, { emit }) {
     const numberClass = computed(() => {
-      return 'leading-tight text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700';
+      return 'leading-tight text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer';
     });
 
     const numberActiveClass = computed(() => {
@@ -47,25 +55,34 @@ export default defineComponent({
   <nav>
     <ul class="inline-flex -space-x-px">
       <li v-if="hasPrev">
-        <a
+        <component
+          :is="disabledPrev ? 'span' : 'a'"
           v-on:click="handleClickPrev"
-          class="py-2 cursor-pointer px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          >Previous</a
+          class="py-2 px-3 ml-0 leading-tight text-gray-500 rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+          :class="[disabledPrev ? 'bg-gray-100' : 'cursor-pointer bg-white']"
+          >Previous</component
         >
       </li>
       <li v-for="number in size" :key="number">
-        <a
+        <component
+          :is="number == active ? 'span' : 'a'"
           v-on:click="handleClickItem(number)"
-          class="py-2 cursor-pointer px-3 border"
-          :class="[number == active ? numberActiveClass : numberClass]"
-          >{{ number }}</a
+          class="py-2 px-3 border"
+          :class="[
+            number == active ? numberActiveClass : numberClass,
+            number == 1 && !hasPrev ? 'rounded-l-lg' : '',
+            number == size && !hasNext ? 'rounded-r-lg' : '',
+          ]"
+          >{{ number }}</component
         >
       </li>
       <li v-if="hasNext">
-        <a
+        <component
+          :is="disabledNext ? 'span' : 'a'"
           v-on:click="handleClickNext"
-          class="py-2 cursor-pointer px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          >Next</a
+          class="py-2 px-3 ml-0 leading-tight text-gray-500 rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+          :class="[disabledNext ? 'bg-gray-100' : 'cursor-pointer bg-white']"
+          >Next</component
         >
       </li>
     </ul>
