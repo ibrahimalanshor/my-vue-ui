@@ -1,8 +1,10 @@
 <script>
 import { computed, defineComponent } from 'vue';
+import BaseSpinner from './base-spinner.vue';
 
 export default defineComponent({
   name: 'base-table',
+  components: { BaseSpinner },
   props: {
     id: {
       type: String,
@@ -15,6 +17,10 @@ export default defineComponent({
     data: {
       type: Array,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -36,7 +42,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+  <div class="overflow-x-auto relative shadow sm:rounded-lg">
+    <div
+      class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-50 bg-opacity-50"
+      v-if="loading"
+    >
+      <base-spinner />
+    </div>
     <table class="w-full text-sm text-left text-gray-500">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <slot name="head" :td-class="headTdClass">
