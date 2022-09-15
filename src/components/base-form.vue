@@ -38,6 +38,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    block: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
@@ -103,6 +107,7 @@ export default defineComponent({
         :disabled="disabled"
         :readonly="readonly"
         :autofocus="autofocus"
+        :block="block"
         :size="size"
         :color="color"
         v-model="value"

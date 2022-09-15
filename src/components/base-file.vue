@@ -9,6 +9,10 @@ export default defineComponent({
       type: String,
       default: 'default',
     },
+    block: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ['update:modelValue', 'change'],
   setup(props, { emit }) {
@@ -29,8 +33,9 @@ export default defineComponent({
       };
 
       const colorClass = colors[props.color] ?? colors.default;
+      const blockClass = props.block ? 'w-full' : '';
 
-      return [colorClass];
+      return [colorClass, blockClass];
     });
 
     const handleChange = (e) => {
@@ -54,7 +59,7 @@ export default defineComponent({
 
 <template>
   <input
-    class="block w-full text-sm rounded-lg border cursor-pointer disabled:bg-gray-100"
+    class="block text-sm rounded-lg border cursor-pointer disabled:bg-gray-100"
     :class="inputClass"
     type="file"
     v-on:change="handleChange"

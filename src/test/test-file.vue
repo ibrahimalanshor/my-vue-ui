@@ -6,6 +6,7 @@ const input = reactive({
   colors: [null, 'primary', 'success', 'error', 'warning'],
   color: null,
   disabled: false,
+  block: true,
   value: null,
 });
 
@@ -29,11 +30,19 @@ const handleChange = () => {
         v-model="input.disabled"
       />
       <label for="file-disabled">Disabled</label>
+      <input
+        type="checkbox"
+        id="file-block"
+        :value="true"
+        v-model="input.block"
+      />
+      <label for="file-block">Block</label>
     </div>
     {{ input.value }}
     <base-file
       :color="input.color"
       :disabled="input.disabled"
+      :block="input.block"
       v-model="input.value"
       v-on:change="handleChange"
     />

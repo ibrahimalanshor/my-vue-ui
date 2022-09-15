@@ -25,6 +25,7 @@ const select = reactive({
   color: null,
   size: null,
   disabled: false,
+  block: true,
   value: null,
 });
 
@@ -53,12 +54,20 @@ const handleChange = () => {
         v-model="select.disabled"
       />
       <label for="select-disabled">Disabled</label>
+      <input
+        type="checkbox"
+        id="select-block"
+        :value="true"
+        v-model="select.block"
+      />
+      <label for="select-block">Block</label>
     </div>
     {{ select.value }}
     <base-select
       :size="select.size"
       :color="select.color"
       :disabled="select.disabled"
+      :block="select.block"
       :options="select.options"
       v-model="select.value"
       v-on:change="handleChange"
