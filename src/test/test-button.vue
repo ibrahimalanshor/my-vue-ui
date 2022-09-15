@@ -11,6 +11,7 @@ const button = reactive({
   loading: false,
   outline: false,
   disabled: false,
+  block: false,
   withIcon: false,
   withBadge: false,
 });
@@ -37,6 +38,13 @@ const button = reactive({
         v-model="button.withIcon"
       />
       <label for="button-icon">With Icon</label>
+      <input
+        type="checkbox"
+        id="button-block"
+        :value="true"
+        v-model="button.block"
+      />
+      <label for="button-block">Block</label>
       <input
         type="checkbox"
         id="button-badge"
@@ -73,6 +81,7 @@ const button = reactive({
       :label="button.text"
       :loading="button.loading"
       :disabled="button.disabled"
+      :block="button.block"
       :outline="button.outline"
       v-if="!button.withIcon && !button.withBadge"
     />
@@ -84,6 +93,7 @@ const button = reactive({
         :label="button.text"
         :loading="button.loading"
         :disabled="button.disabled"
+        :block="button.block"
         :outline="button.outline"
         v-if="button.withBadge"
       >
@@ -97,6 +107,7 @@ const button = reactive({
         :label="button.text"
         :loading="button.loading"
         :disabled="button.disabled"
+        :block="button.block"
         :outline="button.outline"
         v-else-if="button.withIcon"
       >
