@@ -17,12 +17,13 @@ export default defineComponent({
       type: String,
       default: 'left',
     },
+    dropdownClass: String,
   },
   emits: ['update:modelValue', 'click-option'],
   setup(props, { emit }) {
     const visible = ref(props.modelValue);
 
-    const dropdownClass = computed(() => {
+    const dropdownStyle = computed(() => {
       const sizes = {
         default: 'w-44',
         md: 'w-56',
@@ -37,12 +38,12 @@ export default defineComponent({
       const sizeClass = sizes[props.size] ?? sizes.default;
       const positionClass = positions[props.position] ?? positions.default;
 
-      return [sizeClass, positionClass];
+      return [sizeClass, positionClass, props.dropdownClass];
     });
-    const wrapperClass = computed(() => {
+    const wrapperStyle = computed(() => {
       return 'py-1 text-sm text-gray-700';
     });
-    const optionClass = computed(() => {
+    const optopnStyle = computed(() => {
       return 'block py-2 px-4 hover:bg-gray-100';
     });
 
@@ -72,10 +73,10 @@ export default defineComponent({
     return {
       visible,
       handleClickToggle,
-      dropdownClass,
       handleClickOutside,
-      wrapperClass,
-      optionClass,
+      dropdownStyle,
+      wrapperStyle,
+      optopnStyle,
       handleClickOption,
     };
   },
@@ -88,22 +89,22 @@ export default defineComponent({
 
     <div
       class="z-10 bg-white rounded divide-y divide-gray-100 shadow block absolute top-12"
-      :class="dropdownClass"
+      :class="dropdownStyle"
       v-if="visible"
       v-click-outside="handleClickOutside"
     >
       <slot
         name="content"
-        :wrapper-class="wrapperClass"
-        :option-class="optionClass"
+        :wrapper-class="wrapperStyle"
+        :option-class="optopnStyle"
       >
-        <ul :class="wrapperClass">
+        <ul :class="wrapperStyle">
           <li
             v-for="(option, key) in options"
             :key="key"
             v-on:click="handleClickOption(option)"
             :class="[
-              optionClass,
+              optopnStyle,
               option.divideTop ? 'border-t border-gray-100' : '',
               option.divideBottom ? 'border-b border-gray-100' : '',
             ]"
