@@ -23,7 +23,7 @@ export default defineComponent({
     const visible = ref(props.modelValue);
 
     const titleClass = computed(() => {
-      return 'text-xl font-semibold text-gray-900';
+      return 'ui-text-xl ui-font-semibold ui-text-gray-900';
     });
 
     function close() {
@@ -56,17 +56,17 @@ export default defineComponent({
   <teleport to="body" v-if="visible">
     <div
       tabindex="-1"
-      class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full flex justify-center items-center bg-gray-500 bg-opacity-50"
+      class="ui-overflow-y-auto ui-overflow-x-hidden ui-fixed ui-top-0 ui-right-0 ui-left-0 ui-z-50 ui-w-full md:ui-inset-0 ui-h-full ui-flex ui-justify-center ui-items-center ui-bg-gray-500 ui-bg-opacity-50"
     >
       <div
-        class="relative p-4 w-full max-w-2xl h-full md:h-auto"
+        class="ui-relative ui-p-4 ui-w-full ui-max-w-2xl ui-h-full md:ui-h-auto"
         v-click-outside="handleClickOutside"
       >
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow">
+        <div class="ui-relative ui-bg-white ui-rounded-lg ui-shadow">
           <!-- Modal header -->
           <div
-            class="flex justify-between items-center p-4 rounded-t border-b"
+            class="ui-flex ui-justify-between ui-items-center ui-p-4 ui-rounded-t ui-border-b"
             v-if="header"
           >
             <slot name="title" :class="titleClass">
@@ -76,12 +76,12 @@ export default defineComponent({
             </slot>
             <button
               type="button"
-              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+              class="ui-text-gray-400 ui-bg-transparent hover:ui-bg-gray-200 hover:ui-text-gray-900 ui-rounded-lg ui-text-sm ui-p-1.5 ui-ml-auto ui-inline-flex ui-items-center"
               v-on:click="handleClickClose"
             >
               <svg
                 aria-hidden="true"
-                class="w-5 h-5"
+                class="ui-w-5 ui-h-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,12 +95,14 @@ export default defineComponent({
             </button>
           </div>
           <!-- Modal body -->
-          <div class="p-6 space-y-6 text-base leading-relaxed text-gray-500">
+          <div
+            class="ui-p-6 ui-space-y-6 ui-text-base ui-leading-relaxed ui-text-gray-500"
+          >
             <slot />
           </div>
           <!-- Modal footer -->
           <div
-            class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200"
+            class="ui-flex ui-items-center ui-p-6 ui-space-x-2 ui-rounded-b ui-border-t ui-border-gray-200"
             v-if="footer"
           >
             <slot name="footer" />

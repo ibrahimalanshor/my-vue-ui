@@ -26,7 +26,7 @@ const handleChange = () => {
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <input type="text" placeholder="Label" v-model="form.label" />
       <input type="text" placeholder="Label Right" v-model="form.labelRight" />
       <input type="text" placeholder="Button" v-model="form.button" />

@@ -59,11 +59,11 @@ export default defineComponent({
 
     const labelClass = computed(() => {
       const colors = {
-        default: 'text-gray-900',
-        primary: 'text-blue-700',
-        success: 'text-green-700',
-        warning: 'text-yellow-500',
-        error: 'text-red-700',
+        default: 'ui-text-gray-900',
+        primary: 'ui-text-blue-700',
+        success: 'ui-text-green-700',
+        warning: 'ui-text-yellow-500',
+        error: 'ui-text-red-700',
       };
 
       const colorClass = colors[props.color] ?? colors.default;
@@ -72,11 +72,11 @@ export default defineComponent({
     });
     const helperClass = computed(() => {
       const colors = {
-        default: 'text-gray-500',
-        primary: 'text-blue-600',
-        success: 'text-green-600',
-        warning: 'text-yellow-500',
-        error: 'text-red-600',
+        default: 'ui-text-gray-500',
+        primary: 'ui-text-blue-600',
+        success: 'ui-text-green-600',
+        warning: 'ui-text-yellow-500',
+        error: 'ui-text-red-600',
       };
 
       const colorClass = colors[props.color] ?? colors.default;
@@ -85,9 +85,9 @@ export default defineComponent({
     });
     const buttonClass = computed(() => {
       const sizes = {
-        default: 'top-2.5 right-4 text-sm',
-        sm: 'top-2 right-3 text-xs',
-        lg: 'top-4 right-5 text-md',
+        default: 'ui-top-2.5 ui-right-4 ui-text-sm',
+        sm: 'ui-top-2 ui-right-3 ui-text-xs',
+        lg: 'ui-top-4 ui-right-5 ui-text-md',
       };
 
       return [sizes[props.size] ?? sizes.default];
@@ -121,19 +121,24 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :class="[block ? 'w-full' : 'w-[fit-content]']">
-    <div class="flex items-center align-center justify-between mb-2">
-      <label :for="id" class="block text-sm font-medium" :class="labelClass">{{
-        label
-      }}</label>
-      <div class="text-sm" v-if="withLabelRight">
+  <div :class="[block ? 'ui-w-full' : 'ui-w-[fit-content]']">
+    <div
+      class="ui-flex ui-items-center ui-align-center ui-justify-between ui-mb-2"
+    >
+      <label
+        :for="id"
+        class="ui-block ui-text-sm ui-font-medium"
+        :class="labelClass"
+        >{{ label }}</label
+      >
+      <div class="ui-text-sm" v-if="withLabelRight">
         <slot name="label-right">
           <span>{{ labelRight }}</span>
         </slot>
       </div>
     </div>
     <slot>
-      <div class="relative">
+      <div class="ui-relative">
         <base-input
           :id="id"
           :type="type"
@@ -148,7 +153,7 @@ export default defineComponent({
           v-on:change="handleChange"
         ></base-input>
         <button
-          class="absolute text-gray-500"
+          class="ui-absolute ui-text-gray-500"
           :class="buttonClass"
           v-if="withButton"
           v-on:click="handleClickButton"
@@ -159,7 +164,7 @@ export default defineComponent({
         </button>
       </div>
     </slot>
-    <p class="mt-2 text-sm" :class="helperClass" v-if="helper">
+    <p class="ui-mt-2 ui-text-sm" :class="helperClass" v-if="helper">
       {{ helper }}
     </p>
   </div>

@@ -19,13 +19,13 @@ export default defineComponent({
 <template>
   <div>
     <div
-      class="flex items-center justify-between"
+      class="ui-flex ui-items-center ui-justify-between"
       v-on:click="handleClickLabel"
     >
       <slot name="label">{{ label }}</slot>
       <svg
         data-accordion-icon
-        class="w-6 h-6 shrink-0"
+        class="ui-w-6 ui-h-6 ui-shrink-0"
         :class="{ 'rotate-180': visible }"
         fill="currentColor"
         viewBox="0 0 20 20"

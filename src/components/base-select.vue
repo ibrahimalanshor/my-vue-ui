@@ -28,26 +28,26 @@ export default defineComponent({
 
     const selectClass = computed(() => {
       const sizes = {
-        default: 'p-2.5 text-sm',
-        sm: 'p-2 text-sm',
-        lg: 'py-3 px-4 text-base',
+        default: 'ui-p-2.5 ui-text-sm',
+        sm: 'ui-p-2 ui-text-sm',
+        lg: 'ui-py-3 ui-px-4 ui-text-base',
       };
       const colors = {
         default:
-          'bg-gray-50 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500',
+          'ui-bg-gray-50 ui-border-gray-300 ui-text-gray-900 focus:ui-ring-blue-500 focus:ui-border-blue-500',
         primary:
-          'bg-blue-50 border-blue-500 text-blue-900 placeholder-blue-700 focus:ring-blue-500 focus:border-blue-500',
+          'ui-bg-blue-50 ui-border-blue-500 ui-text-blue-900 ui-placeholder-blue-700 focus:ui-ring-blue-500 focus:ui-border-blue-500',
         success:
-          'bg-green-50 border-green-500 text-green-900 placeholder-green-700 focus:ring-green-500 focus:border-green-500',
+          'ui-bg-green-50 ui-border-green-500 ui-text-green-900 ui-placeholder-green-700 focus:ui-ring-green-500 focus:ui-border-green-500',
         warning:
-          'bg-yellow-50 border-yellow-400 text-yellow-700 placeholder-yellow-500 focus:ring-yellow-400 focus:border-yellow-400',
+          'ui-bg-yellow-50 ui-border-yellow-400 ui-text-yellow-700 ui-placeholder-yellow-500 focus:ui-ring-yellow-400 focus:ui-border-yellow-400',
         error:
-          'bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500',
+          'ui-bg-red-50 ui-border-red-500 ui-text-red-900 ui-placeholder-red-700 focus:ui-ring-red-500 focus:ui-border-red-500',
       };
 
       const sizeClass = sizes[props.size] ?? sizes.default;
       const colorClass = colors[props.color] ?? colors.default;
-      const blockClass = props.block ? 'w-full' : '';
+      const blockClass = props.block ? 'ui-w-full' : '';
 
       return [sizeClass, colorClass, blockClass];
     });
@@ -71,7 +71,7 @@ export default defineComponent({
 
 <template>
   <select
-    class="border text-sm rounded-lg block disabled:bg-gray-100"
+    class="ui-border ui-text-sm ui-rounded-lg block disabled:ui-bg-gray-100"
     :class="selectClass"
     v-model="value"
     v-on:change="handleChange"

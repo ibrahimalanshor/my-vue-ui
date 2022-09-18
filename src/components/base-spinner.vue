@@ -12,11 +12,11 @@ export default defineComponent({
   setup(props) {
     const spinnerClass = computed(() => {
       const fillColors = {
-        default: 'fill-gray-300',
-        primary: 'fill-blue-600',
-        success: 'fill-green-500',
-        warning: 'fill-yellow-400',
-        error: 'fill-red-600',
+        default: 'ui-fill-gray-300',
+        primary: 'ui-fill-blue-600',
+        success: 'ui-fill-green-500',
+        warning: 'ui-fill-yellow-400',
+        error: 'ui-fill-red-600',
       };
 
       const fillClass = fillColors[props.color] ?? fillColors.default;
@@ -32,7 +32,7 @@ export default defineComponent({
 <template>
   <svg
     aria-hidden="true"
-    class="mr-2 w-8 h-8 text-gray-200 animate-spin"
+    class="ui-mr-2 ui-w-8 ui-h-8 ui-text-gray-200 ui-animate-spin"
     :class="spinnerClass"
     viewBox="0 0 100 101"
     fill="none"

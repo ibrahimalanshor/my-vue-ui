@@ -15,10 +15,10 @@ export default defineComponent({
     const visible = ref(props.modelValue);
 
     const iconClass = computed(() => {
-      return 'mx-auto mb-4 w-14 h-14 text-gray-400';
+      return 'ui-mx-auto ui-mb-4 ui-w-14 ui-h-14 ui-text-gray-400';
     });
     const contentClass = computed(() => {
-      return 'mb-5 text-lg font-normal text-gray-500';
+      return 'ui-mb-5 ui-text-lg ui-font-normal ui-text-gray-500';
     });
 
     function close() {
@@ -57,22 +57,22 @@ export default defineComponent({
   <teleport to="body" v-if="visible">
     <div
       tabindex="-1"
-      class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-full flex justify-center items-center bg-gray-500 bg-opacity-50"
+      class="ui-overflow-y-auto ui-overflow-x-hidden ui-fixed ui-top-0 ui-right-0 ui-left-0 ui-z-50 ui-w-full md:ui-inset-0 ui-h-full ui-flex ui-justify-center ui-items-center ui-bg-gray-500 ui-bg-opacity-50"
     >
       <div
-        class="relative p-4 w-full max-w-md h-full md:h-auto"
+        class="ui-relative ui-p-4 ui-w-full ui-max-w-md ui-h-full md:ui-h-auto"
         v-click-outside="handleClickOutside"
       >
-        <div class="relative bg-white rounded-lg shadow">
+        <div class="ui-relative ui-bg-white ui-rounded-lg ui-shadow">
           <button
             v-on:click="handleClickClose"
             type="button"
-            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+            class="ui-absolute ui-top-3 ui-right-2.5 ui-text-gray-400 ui-bg-transparent hover:ui-bg-gray-200 hover:ui-text-gray-900 ui-rounded-lg ui-text-sm ui-p-1.5 ui-ml-auto ui-inline-flex ui-items-center"
             data-modal-toggle="popup-modal"
           >
             <svg
               aria-hidden="true"
-              class="w-5 h-5"
+              class="ui-w-5 ui-h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ export default defineComponent({
               ></path>
             </svg>
           </button>
-          <div class="p-6 text-center">
+          <div class="ui-p-6 ui-text-center">
             <slot name="icon" :icon-class="iconClass">
               <svg
                 aria-hidden="true"

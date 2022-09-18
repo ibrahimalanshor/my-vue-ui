@@ -24,19 +24,19 @@ export default defineComponent({
 
     const iconWrapperClass = computed(() => {
       const bgColors = {
-        default: 'bg-gray-100',
-        primary: 'bg-blue-100',
-        success: 'bg-green-100',
-        warning: 'bg-yellow-100',
-        error: 'bg-red-100',
+        default: 'ui-bg-gray-100',
+        primary: 'ui-bg-blue-100',
+        success: 'ui-bg-green-100',
+        warning: 'ui-bg-yellow-100',
+        error: 'ui-bg-red-100',
       };
 
       const textColors = {
-        default: 'text-gray-500',
-        primary: 'text-blue-500',
-        success: 'text-green-500',
-        warning: 'text-yellow-500',
-        error: 'text-red-500',
+        default: 'ui-text-gray-500',
+        primary: 'ui-text-blue-500',
+        success: 'ui-text-green-500',
+        warning: 'ui-text-yellow-500',
+        error: 'ui-text-red-500',
       };
 
       const bgClass = props.outline
@@ -50,7 +50,7 @@ export default defineComponent({
     });
 
     const iconClass = computed(() => {
-      return 'w-5 h-5';
+      return 'ui-w-5 ui-h-5';
     });
 
     function close() {
@@ -78,27 +78,27 @@ export default defineComponent({
 
 <template>
   <div
-    class="flex items-center p-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow fixed top-4 left-1/2 -translate-x-1/2"
+    class="ui-flex ui-items-center ui-p-4 ui-w-full ui-max-w-xs ui-text-gray-500 ui-bg-white ui-rounded-lg ui-shadow ui-fixed ui-top-4 ui-left-1/2 -ui-translate-x-1/2"
     role="alert"
     v-if="visible"
   >
     <div
-      class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 rounded-lg mr-3"
+      class="ui-inline-flex ui-flex-shrink-0 ui-justify-center ui-items-center ui-w-8 ui-h-8 ui-rounded-lg ui-mr-3"
       :class="iconWrapperClass"
       v-if="withIcon"
     >
       <slot name="icon" :icon-class="iconClass" />
     </div>
-    <div class="text-sm font-normal">{{ text }}</div>
+    <div class="ui-text-sm ui-font-normal">{{ text }}</div>
     <button
       type="button"
-      class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
+      class="ui-ml-auto -ui-mx-1.5 -ui-my-1.5 ui-bg-white ui-text-gray-400 hover:ui-text-gray-900 ui-rounded-lg focus:ui-ring-2 focus:ui-ring-gray-300 ui-p-1.5 hover:ui-bg-gray-100 ui-inline-flex ui-h-8 ui-w-8"
       aria-label="Close"
       v-on:click="handleClickClose"
     >
       <svg
         aria-hidden="true"
-        class="w-5 h-5"
+        class="ui-w-5 ui-h-5"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

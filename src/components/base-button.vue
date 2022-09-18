@@ -32,51 +32,53 @@ export default defineComponent({
   setup(props) {
     const buttonClass = computed(() => {
       const bgColors = {
-        default: 'bg-white hover:bg-gray-100 border border-gray-300',
-        primary: 'bg-blue-700 hover:bg-blue-800',
-        success: 'bg-green-700 hover:bg-green-800',
-        warning: 'bg-yellow-400 hover:bg-yellow-500',
-        error: 'bg-red-700 hover:bg-red-800',
+        default:
+          'ui-bg-white hover:ui-bg-gray-100 ui-border ui-border-gray-300',
+        primary: 'ui-bg-blue-700 hover:ui-bg-blue-800',
+        success: 'ui-bg-green-700 hover:ui-bg-green-800',
+        warning: 'ui-bg-yellow-400 hover:ui-bg-yellow-500',
+        error: 'ui-bg-red-700 hover:ui-bg-red-800',
       };
 
       const bgOutlineColors = {
-        default: 'bg-white hover:bg-gray-100 border border-gray-300',
-        primary: 'border border-blue-700 hover:bg-blue-800',
-        success: 'border border-green-700 hover:bg-green-800',
-        warning: 'border border-yellow-400 hover:bg-yellow-500',
-        error: 'border border-red-700 hover:bg-red-800',
+        default:
+          'ui-bg-white hover:ui-bg-gray-100 ui-border ui-border-gray-300',
+        primary: 'ui-border ui-border-blue-700 hover:ui-bg-blue-800',
+        success: 'ui-border ui-border-green-700 hover:ui-bg-green-800',
+        warning: 'ui-border ui-border-yellow-400 hover:ui-bg-yellow-500',
+        error: 'ui-border ui-border-red-700 hover:ui-bg-red-800',
       };
 
       const textColors = {
-        default: 'text-gray-900',
-        primary: 'text-white',
-        success: 'text-white',
-        warning: 'text-white',
-        error: 'text-white',
+        default: 'ui-text-gray-900',
+        primary: 'ui-text-white',
+        success: 'ui-text-white',
+        warning: 'ui-text-white',
+        error: 'ui-text-white',
       };
 
       const textOutlineColors = {
-        default: 'text-gray-900 hover:text-white',
-        primary: 'text-blue-700 hover:text-white',
-        success: 'text-green-700 hover:text-white',
-        warning: 'text-yellow-400 hover:text-white',
-        error: 'text-red-700 hover:text-white',
+        default: 'ui-text-gray-900 hover:ui-text-white',
+        primary: 'ui-text-blue-700 hover:ui-text-white',
+        success: 'ui-text-green-700 hover:ui-text-white',
+        warning: 'ui-text-yellow-400 hover:ui-text-white',
+        error: 'ui-text-red-700 hover:ui-text-white',
       };
 
       const focusColors = {
-        default: ' focus:ring-gray-200',
-        primary: 'focus:ring-blue-300',
-        success: 'focus:ring-green-300',
-        warning: 'focus:ring-yellow-300',
-        error: 'focus:ring-red-300',
+        default: ' focus:ui-ring-gray-200',
+        primary: 'focus:ui-ring-blue-300',
+        success: 'focus:ui-ring-green-300',
+        warning: 'focus:ui-ring-yellow-300',
+        error: 'focus:ui-ring-red-300',
       };
 
       const sizes = {
-        default: 'px-5 py-2.5 text-sm',
-        xs: 'py-2 px-3 text-xs',
-        sm: 'py-2 px-3 text-sm',
-        lg: 'py-3 px-5 text-base',
-        xl: 'py-3.5 px-6 text-base',
+        default: 'ui-px-5 ui-py-2.5 ui-text-sm',
+        xs: 'ui-py-2 ui-px-3 ui-text-xs',
+        sm: 'ui-py-2 ui-px-3 ui-text-sm',
+        lg: 'ui-py-3 ui-px-5 ui-text-base',
+        xl: 'ui-py-3.5 ui-px-6 ui-text-base',
       };
 
       const bgClass = props.outline
@@ -87,19 +89,21 @@ export default defineComponent({
         : textColors[props.color] ?? textColors.default;
       const focusClass = focusColors[props.color] ?? focusColors.default;
       const sizeClass = sizes[props.size] ?? sizes.default;
-      const blockClass = props.block ? 'w-full justify-center text-center' : '';
+      const blockClass = props.block
+        ? 'ui-w-full ui-justify-center ui-text-center'
+        : '';
 
       return [bgClass, textClass, focusClass, sizeClass, blockClass];
     });
 
     const iconClass = computed(() => {
-      const baseClass = 'mr-2 -ml-1 w-5 h-5';
+      const baseClass = 'ui-mr-2 -ui-ml-1 ui-w-5 ui-h-5';
 
       return [baseClass];
     });
 
     const badgeClass = computed(() => {
-      const baseClass = 'ml-2';
+      const baseClass = 'ui-ml-2';
 
       return [baseClass];
     });
@@ -112,14 +116,14 @@ export default defineComponent({
 <template>
   <button
     type="button"
-    class="focus:ring-4 font-medium rounded-lg text-sm focus:outline-none flex items-center disabled:opacity-75"
+    class="focus:ui-ring-4 ui-font-medium ui-rounded-lg ui-text-sm focus:ui-outline-none ui-flex ui-items-center disabled:ui-opacity-75"
     :class="buttonClass"
   >
     <svg
       v-if="loading"
       aria-hidden="true"
       role="status"
-      class="inline mr-3 w-4 h-4 text-white animate-spin"
+      class="ui-inline ui-mr-3 ui-w-4 ui-h-4 ui-text-white ui-animate-spin"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

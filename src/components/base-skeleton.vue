@@ -7,5 +7,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div role="status" class="animate-pulse h-20 bg-gray-200 rounded-lg" />
+  <div
+    role="status"
+    class="ui-animate-pulse ui-h-20 ui-bg-gray-200 ui-rounded-lg"
+  />
 </template>
