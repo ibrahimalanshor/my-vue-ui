@@ -25,14 +25,14 @@ export default defineComponent({
 
     const dropdownStyle = computed(() => {
       const sizes = {
-        default: 'w-44',
-        md: 'w-56',
-        lg: 'w-72',
-        auto: 'w-auto',
+        default: 'ui-w-44',
+        md: 'ui-w-56',
+        lg: 'ui-w-72',
+        auto: 'ui-w-auto',
       };
       const positions = {
-        left: 'left-0',
-        right: 'right-0',
+        left: 'ui-left-0',
+        right: 'ui-right-0',
       };
 
       const sizeClass = sizes[props.size] ?? sizes.default;
@@ -41,10 +41,10 @@ export default defineComponent({
       return [sizeClass, positionClass, props.dropdownClass];
     });
     const wrapperStyle = computed(() => {
-      return 'py-1 text-sm text-gray-700';
+      return 'ui-py-1 ui-text-sm ui-text-gray-700';
     });
     const optopnStyle = computed(() => {
-      return 'block py-2 px-4 hover:bg-gray-100';
+      return 'ui-block ui-py-2 ui-px-4 hover:ui-bg-gray-100';
     });
 
     const handleClickToggle = () => {
@@ -84,11 +84,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="relative w-auto">
+  <div class="ui-relative ui-w-auto">
     <slot name="toggle" :toggle="handleClickToggle" />
 
     <div
-      class="z-10 bg-white rounded divide-y divide-gray-100 shadow block absolute top-12"
+      class="ui-z-10 ui-bg-white ui-rounded ui-divide-y ui-divide-gray-100 ui-shadow ui-block ui-absolute ui-top-12"
       :class="dropdownStyle"
       v-if="visible"
       v-click-outside="handleClickOutside"
@@ -105,8 +105,8 @@ export default defineComponent({
             v-on:click="handleClickOption(option)"
             :class="[
               optopnStyle,
-              option.divideTop ? 'border-t border-gray-100' : '',
-              option.divideBottom ? 'border-b border-gray-100' : '',
+              option.divideTop ? 'ui-border-t ui-border-gray-100' : '',
+              option.divideBottom ? 'ui-border-b ui-border-gray-100' : '',
             ]"
           >
             {{ option.label }}

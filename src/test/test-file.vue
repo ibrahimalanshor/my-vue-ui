@@ -17,7 +17,7 @@ const handleChange = () => {
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <select v-model="input.color">
         <option v-for="color in input.colors" :key="color" :value="color">
           {{ color }}

@@ -36,7 +36,7 @@ const handleChange = () => {
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <select v-model="select.size">
         <option v-for="size in select.sizes" :key="size" :value="size">
           {{ size }}

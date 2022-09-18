@@ -19,7 +19,7 @@ const button = reactive({
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <input v-model="button.text" type="text" placeholder="Button Text" />
       <select v-model="button.color">
         <option v-for="color in button.colors" :key="color" :value="color">

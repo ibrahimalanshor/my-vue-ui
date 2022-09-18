@@ -25,15 +25,15 @@ export default defineComponent({
   },
   setup(props) {
     const headTdClass = computed(() => {
-      return 'py-3 px-6';
+      return 'ui-py-3 ui-px-6';
     });
 
     const bodyTrClass = computed(() => {
-      return 'bg-white border-b hover:bg-gray-50';
+      return 'ui-bg-white ui-border-b hover:ui-bg-gray-50';
     });
 
     const bodyTdClass = computed(() => {
-      return 'py-4 px-6';
+      return 'ui-py-4 ui-px-6';
     });
 
     return { headTdClass, bodyTrClass, bodyTdClass };
@@ -42,15 +42,15 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="overflow-x-auto relative shadow sm:rounded-lg">
+  <div class="ui-overflow-x-auto ui-relative ui-shadow sm:ui-rounded-lg">
     <div
-      class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-50 bg-opacity-50"
+      class="ui-absolute ui-top-0 ui-left-0 ui-w-full ui-h-full ui-flex ui-items-center ui-justify-center ui-bg-gray-50 ui-bg-opacity-50"
       v-if="loading"
     >
       <base-spinner />
     </div>
-    <table class="w-full text-sm text-left text-gray-500">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <table class="ui-w-full ui-text-sm ui-text-left ui-text-gray-500">
+      <thead class="ui-text-xs ui-text-gray-700 ui-uppercase ui-bg-gray-50">
         <slot name="head" :td-class="headTdClass">
           <tr>
             <th
@@ -78,8 +78,8 @@ export default defineComponent({
         </slot>
       </tbody>
       <tbody v-else>
-        <tr class="bg-white border-b">
-          <td :colspan="columns.length" class="py-4 px-6">Data Empty</td>
+        <tr class="ui-bg-white ui-border-b">
+          <td :colspan="columns.length" class="ui-py-4 ui-px-6">Data Empty</td>
         </tr>
       </tbody>
     </table>

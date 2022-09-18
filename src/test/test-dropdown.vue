@@ -37,7 +37,7 @@ const handleClickOption = (option) => {
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <select v-model="dropdown.size">
         <option v-for="size in dropdown.sizes" :key="size" :value="size">
           {{ size }}

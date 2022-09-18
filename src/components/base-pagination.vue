@@ -29,11 +29,11 @@ export default defineComponent({
   emits: ['prev', 'next', 'click-item'],
   setup(props, { emit }) {
     const numberClass = computed(() => {
-      return 'leading-tight text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer';
+      return 'ui-leading-tight ui-text-gray-500 ui-bg-white ui-border-gray-300 hover:ui-bg-gray-100 hover:ui-text-gray-700 ui-cursor-pointer';
     });
 
     const numberActiveClass = computed(() => {
-      return 'text-blue-600 bg-blue-50 hover:bg-blue-100 border-blue-300 hover:bg-blue-100 hover:text-blue';
+      return 'ui-text-blue-600 ui-bg-blue-50 hover:ui-bg-blue-100 ui-border-blue-300 hover:ui-bg-blue-100 hover:ui-text-blue';
     });
 
     const handleClickPrev = () => emit('prev');
@@ -53,13 +53,15 @@ export default defineComponent({
 
 <template>
   <nav>
-    <ul class="inline-flex -space-x-px">
+    <ul class="ui-inline-flex -ui-space-x-px">
       <li v-if="hasPrev">
         <component
           :is="disabledPrev ? 'span' : 'a'"
           v-on:click="handleClickPrev"
-          class="py-2 px-3 ml-0 leading-tight text-gray-500 rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          :class="[disabledPrev ? 'bg-gray-100' : 'cursor-pointer bg-white']"
+          class="ui-py-2 ui-px-3 ui-ml-0 ui-leading-tight ui-text-gray-500 ui-rounded-l-lg ui-border ui-border-gray-300 hover:ui-bg-gray-100 hover:ui-text-gray-700"
+          :class="[
+            disabledPrev ? 'ui-bg-gray-100' : 'ui-cursor-pointer ui-bg-white',
+          ]"
           >Previous</component
         >
       </li>
@@ -67,11 +69,11 @@ export default defineComponent({
         <component
           :is="number == active ? 'span' : 'a'"
           v-on:click="handleClickItem(number)"
-          class="py-2 px-3 border"
+          class="ui-py-2 ui-px-3 ui-border"
           :class="[
             number == active ? numberActiveClass : numberClass,
-            number == 1 && !hasPrev ? 'rounded-l-lg' : '',
-            number == size && !hasNext ? 'rounded-r-lg' : '',
+            number == 1 && !hasPrev ? 'ui-rounded-l-lg' : '',
+            number == size && !hasNext ? 'ui-rounded-r-lg' : '',
           ]"
           >{{ number }}</component
         >
@@ -80,8 +82,10 @@ export default defineComponent({
         <component
           :is="disabledNext ? 'span' : 'a'"
           v-on:click="handleClickNext"
-          class="py-2 px-3 ml-0 leading-tight text-gray-500 rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          :class="[disabledNext ? 'bg-gray-100' : 'cursor-pointer bg-white']"
+          class="ui-py-2 ui-px-3 ui-ml-0 ui-leading-tight ui-text-gray-500 ui-rounded-r-lg ui-border ui-border-gray-300 hover:ui-bg-gray-100 hover:ui-text-gray-700"
+          :class="[
+            disabledNext ? 'ui-bg-gray-100' : 'ui-cursor-pointer ui-bg-white',
+          ]"
           >Next</component
         >
       </li>

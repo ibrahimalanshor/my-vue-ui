@@ -20,26 +20,26 @@ export default defineComponent({
   setup(props) {
     const badgeClass = computed(() => {
       const bgColors = {
-        default: 'bg-gray-100',
-        primary: 'bg-blue-100',
-        success: 'bg-green-100',
-        warning: 'bg-yellow-100',
-        error: 'bg-red-100',
+        default: 'ui-bg-gray-100',
+        primary: 'ui-bg-blue-100',
+        success: 'ui-bg-green-100',
+        warning: 'ui-bg-yellow-100',
+        error: 'ui-bg-red-100',
       };
 
       const textColors = {
-        default: 'text-gray-800',
-        primary: 'text-blue-800',
-        success: 'text-green-800',
-        warning: 'text-yellow-800',
-        error: 'text-red-800',
+        default: 'ui-text-gray-800',
+        primary: 'ui-text-blue-800',
+        success: 'ui-text-green-800',
+        warning: 'ui-text-yellow-800',
+        error: 'ui-text-red-800',
       };
 
       const bgClass = bgColors[props.color] ?? bgColors.default;
       const textClass = textColors[props.color] ?? textColors.default;
       const circleClass = props.circle
-        ? 'w-4 h-4 p-0 rounded-full'
-        : 'px-2.5 py-0.5';
+        ? 'ui-w-4 ui-h-4 ui-p-0 ui-rounded-full'
+        : 'ui-px-2.5 ui-py-0.5';
 
       return [bgClass, textClass, circleClass];
     });
@@ -50,5 +50,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <span class="text-xs font-semibold" :class="badgeClass">{{ label }}</span>
+  <span class="ui-text-xs ui-font-semibold" :class="badgeClass">{{
+    label
+  }}</span>
 </template>

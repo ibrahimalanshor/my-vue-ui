@@ -24,26 +24,26 @@ export default defineComponent({
   },
   setup(props) {
     const wrapperClass = computed(() => {
-      const sizeClass = props.withLabel ? '' : 'h-2.5';
+      const sizeClass = props.withLabel ? '' : 'ui-h-2.5';
 
       return [sizeClass];
     });
 
     const contentClass = computed(() => {
       const bgColors = {
-        default: 'bg-gray-300',
-        primary: 'bg-blue-600',
-        success: 'bg-green-600',
-        warning: 'bg-yellow-400',
-        error: 'bg-red-600',
+        default: 'ui-bg-gray-300',
+        primary: 'ui-bg-blue-600',
+        success: 'ui-bg-green-600',
+        warning: 'ui-bg-yellow-400',
+        error: 'ui-bg-red-600',
       };
 
       const textColors = {
-        default: 'text-gray-800',
-        primary: 'text-blue-100',
-        success: 'text-green-100',
-        warning: 'text-yellow-100',
-        error: 'text-red-100',
+        default: 'ui-text-gray-800',
+        primary: 'ui-text-blue-100',
+        success: 'ui-text-green-100',
+        warning: 'ui-text-yellow-100',
+        error: 'ui-text-red-100',
       };
 
       const bgClass = props.outline
@@ -52,7 +52,7 @@ export default defineComponent({
       const textClass = props.outline
         ? textOutlineColors[props.color] ?? textOutlineColors.default
         : textColors[props.color] ?? textColors.default;
-      const sizeClass = props.withLabel ? 'p-0.5' : 'h-2.5';
+      const sizeClass = props.withLabel ? 'ui-p-0.5' : 'ui-h-2.5';
 
       return [bgClass, textClass, sizeClass];
     });
@@ -67,9 +67,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full bg-gray-200 rounded-full" :class="wrapperClass">
+  <div class="ui-w-full ui-bg-gray-200 ui-rounded-full" :class="wrapperClass">
     <div
-      class="rounded-full transition-all text-xs font-medium text-center p-0.5 leading-none"
+      class="ui-rounded-full ui-transition-all ui-text-xs ui-font-medium ui-text-center ui-p-0.5 ui-leading-none"
       :class="contentClass"
       :style="{ width: `${width}%` }"
     >

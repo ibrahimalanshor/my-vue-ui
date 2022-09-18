@@ -9,7 +9,7 @@ const spinner = reactive({
 </script>
 
 <template>
-  <div class="mb-4">
+  <div class="ui-mb-4">
     <select v-model="spinner.color">
       <option v-for="color in spinner.colors" :key="color" :value="color">
         {{ color }}

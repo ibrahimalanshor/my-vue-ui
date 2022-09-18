@@ -33,7 +33,7 @@ const handleClickShow = () => {
         </svg>
       </template>
       <template #footer>
-        <div class="flex items-center justify-center space-x-3">
+        <div class="ui-flex ui-items-center ui-justify-center ui-space-x-3">
           <base-button color="error" label="Confirm" />
           <base-button label="Cancel" />
         </div>

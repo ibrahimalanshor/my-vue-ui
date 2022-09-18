@@ -15,7 +15,7 @@ const handleClickVisible = () => (alert.visible = true);
 
 <template>
   <div>
-    <div class="mb-4">
+    <div class="ui-mb-4">
       <input v-model="alert.text" type="text" placeholder="Alert Text" />
       <select v-model="alert.color">
         <option v-for="color in alert.colors" :key="color" :value="color">
